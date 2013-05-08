@@ -6,7 +6,9 @@ A simple C# wrapper for Gordon's WiringPi library, also on GitHub.
 Simply install Gordon's WiringPi library on your Raspberry Pi and create the shared libraries as follows:
 
 cc -shared wiringPi.o -o libwiringPi.so
+
 cc -shared wiringPiI2C.o -o libwiringPiI2C.so
+
 cc -shared wiringPiSPI.o -o libwiringPiSPI.so
 
 Compile the project in Visual Studio 2010 and copy to your RasPi via FileZilla or some other SFTP client. Then 
