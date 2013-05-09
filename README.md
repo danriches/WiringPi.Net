@@ -1,7 +1,9 @@
 WiringPi.Net
 ============
 
-A simple C# wrapper for Gordon's WiringPi library, also on GitHub.
+A simple C# wrapper for Gordon's WiringPi library, also on GitHub. Please note this was only tested with
+the hardfloat version of Raspbian using CrashOverrides mono build which can be found here: 
+http://www.raspberrypi.org/phpBB3/viewtopic.php?f=34&t=37174&hilit=c%23+experimental 
 
 Simply install Gordon's WiringPi library on your Raspberry Pi and create the shared libraries as follows:
 
