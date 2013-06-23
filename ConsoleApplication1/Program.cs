@@ -9,7 +9,9 @@ namespace SPITest
     {
         static void Main(string[] args)
         {
-            LoopTest.RunTest();
+            AD9834DDS.RunTest();
+            //OLEDDriver.RunTest();
+            //LoopTest.RunTest();
         }
     }
 }
