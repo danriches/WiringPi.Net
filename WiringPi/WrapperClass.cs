@@ -14,6 +14,11 @@
  * Date         Changed By          Details of change
  * 08 May 2013  Daniel Riches       Corrected c library mappings for I2C and SPI, added this header
  * 
+ ************************************************************************************************
+ * Changelog
+ * Date         Changed By          Details of change  
+ * 23 Nov 2013  Gerhard de Clercq   Changed digitalread to return int and implemented wiringPiISR
+ * 
  ************************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -53,7 +58,7 @@ namespace WiringPi
         public static extern void digitalWriteByte(int value);
 
         [DllImport("libwiringPi.so", EntryPoint = "digitalReadGpio")]           //Uses Gpio pin numbers
-        public static extern void digitalRead(int pin);
+        public static extern int digitalRead(int pin);
 
         [DllImport("libwiringPi.so", EntryPoint = "pullUpDnControlGpio")]         //Uses Gpio pin numbers  
         public static extern void pullUpDnControl(int pin, int pud);
@@ -83,9 +88,9 @@ namespace WiringPi
         }
     }
 
-  /// <summary>
-  /// Provides use of the Timing functions such as delays
-  /// </summary>
+    /// <summary>
+    /// Provides use of the Timing functions such as delays
+    /// </summary>
     public class Timing
     {
         [DllImport("libwiringPi.so", EntryPoint = "millis")]
@@ -98,9 +103,9 @@ namespace WiringPi
         public static extern void delayMicroseconds(uint howLong);
     }
 
-  /// <summary>
-  /// Provides access to the Thread priority and interrupts for IO
-  /// </summary>
+    /// <summary>
+    /// Provides access to the Thread priority and interrupts for IO
+    /// </summary>
     public class PiThreadInterrupts
     {
         [DllImport("libwiringPi.so", EntryPoint = "piHiPri")]
@@ -109,7 +114,19 @@ namespace WiringPi
         [DllImport("libwiringPi.so", EntryPoint = "waitForInterrupt")]
         public static extern int waitForInterrupt(int pin, int timeout);
 
-        //static extern int wiringPiISR(int pin, int edgeType, 
+        //This is the C# equivelant to "void (*function)(void))" required by wiringPi to define a callback method
+        public delegate void ISRCallback();
+
+        [DllImport("libwiringPi.so", EntryPoint = "wiringPiISR")]
+        public static extern int wiringPiISR(int pin, int mode, ISRCallback method);
+
+        public enum InterruptLevels
+        {
+            INT_EDGE_SETUP = 0,
+            INT_EDGE_FALLING = 1,
+            INT_EDGE_RISING = 2,
+            INT_EDGE_BOTH = 3
+        }
 
         //static extern int piThreadCreate(string name);
     }
