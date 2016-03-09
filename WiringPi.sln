@@ -1,9 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WiringPi", "WiringPi\WiringPi.csproj", "{44164C3F-B228-4488-B027-EA9717E7E6E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{48C92185-31AE-4E72-A83F-A4F1E4E6D625}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPwm", "TestPwm\TestPwm.csproj", "{431A1567-577F-48A6-80BD-C97DDEB9418B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,16 @@ Global
 		{48C92185-31AE-4E72-A83F-A4F1E4E6D625}.Release|Mixed Platforms.Build.0 = Release|x86
 		{48C92185-31AE-4E72-A83F-A4F1E4E6D625}.Release|x86.ActiveCfg = Release|x86
 		{48C92185-31AE-4E72-A83F-A4F1E4E6D625}.Release|x86.Build.0 = Release|x86
+		{431A1567-577F-48A6-80BD-C97DDEB9418B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{431A1567-577F-48A6-80BD-C97DDEB9418B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{431A1567-577F-48A6-80BD-C97DDEB9418B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{431A1567-577F-48A6-80BD-C97DDEB9418B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{431A1567-577F-48A6-80BD-C97DDEB9418B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{431A1567-577F-48A6-80BD-C97DDEB9418B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{431A1567-577F-48A6-80BD-C97DDEB9418B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{431A1567-577F-48A6-80BD-C97DDEB9418B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{431A1567-577F-48A6-80BD-C97DDEB9418B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{431A1567-577F-48A6-80BD-C97DDEB9418B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
