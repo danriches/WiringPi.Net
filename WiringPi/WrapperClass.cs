@@ -1,4 +1,4 @@
-﻿/************************************************************************************************
+/************************************************************************************************
  * This wrapper class was written by Daniel J Riches for Gordon Hendersons WiringPi C library   *
  * I take no responsibility for this wrapper class providing proper functionality and give no   *
  * warranty of any kind, nor it's use or fitness for any purpose. You use this wrapper at your  *
@@ -19,6 +19,12 @@
  * Date         Changed By          Details of change  
  * 23 Nov 2013  Gerhard de Clercq   Changed digitalread to return int and implemented wiringPiISR
  * 
+ ************************************************************************************************
+ 
+ * Changelog
+ * Date         Changed By          Details of change  
+ * 18 Jan 2016  Marcus Lum          Updated imported methods to current wiringPi 
+ * 
  ************************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -29,7 +35,7 @@ using System.Text;
 namespace WiringPi
 {
     /// <summary>
-    /// Used to initialise Gordon's library, there's 3 different ways to initialise and we're going to support all 3
+    /// Used to initialise Gordon's library, there's 4 different ways to initialise and we're going to support all 4
     /// </summary>
     public class Init
     {
@@ -41,6 +47,9 @@ namespace WiringPi
 
         [DllImport("libwiringPi.so", EntryPoint = "wiringPiSetupSys")]
         public static extern int WiringPiSetupSys();
+
+        [DllImport("libwiringPi.so", EntryPoint = "wiringPiSetupPhys")]
+        public static extern int WiringPiSetupPhys();
     }
 
     /// <summary>
@@ -86,6 +95,11 @@ namespace WiringPi
             PWMOutput = 2,
             GPIOClock = 3
         }
+
+        public enum GPIOpinvalue
+        {
+            High = 1,
+            Low = 0
     }
 
     public class SoftPwm {
@@ -107,6 +121,9 @@ namespace WiringPi
         [DllImport("libwiringPi.so", EntryPoint = "millis")]
         public static extern uint millis();
 
+        [DllImport("libwiringPi.so", EntryPoint = "micros")]
+        public static extern uint micros();
+
         [DllImport("libwiringPi.so", EntryPoint = "delay")]
         public static extern void delay(uint howLong);
 
@@ -120,7 +137,7 @@ namespace WiringPi
     public class PiThreadInterrupts
     {
         [DllImport("libwiringPi.so", EntryPoint = "piHiPri")]
-        public static extern int PiHiPri(int priority);
+        public static extern int piHiPri(int priority);
 
         [DllImport("libwiringPi.so", EntryPoint = "waitForInterrupt")]
         public static extern int waitForInterrupt(int pin, int timeout);
@@ -149,6 +166,9 @@ namespace WiringPi
 
         [DllImport("libwiringPi.so", EntryPoint = "wpiPinToGpio")]
         public static extern int wpiPinToGpio(int wPiPin);
+
+        [DllImport("libwiringPi.so", EntryPoint = "physPinToGpio")]
+        public static extern int physPinToGpio(int physPin);
 
         [DllImport("libwiringPi.so", EntryPoint = "setPadDrive")]
         public static extern int setPadDrive(int group, int value);
