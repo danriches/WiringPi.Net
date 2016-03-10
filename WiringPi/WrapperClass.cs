@@ -85,6 +85,9 @@ namespace WiringPi
         [DllImport("libwiringPi.so", EntryPoint = "pwmSetClock")]             //Uses Gpio pin numbers
         public static extern void pwmSetClock(int divisor);
 
+        [DllImport("libwiringPi.so", EntryPoint = "gpioClockSet")]              //Uses Gpio pin numbers
+        public static extern void ClockSetGpio(int pin, int freq);
+
         public enum GPIOpinmode
         {
             Input = 0,
@@ -97,7 +100,17 @@ namespace WiringPi
         {
             High = 1,
             Low = 0
-        }
+    }
+
+    public class SoftPwm {
+        [DllImport("libwiringPi.so", EntryPoint = "softPwmCreate")]
+        public static extern int Create(int pin, int initialValue, int pwmRange);
+
+        [DllImport("libwiringPi.so", EntryPoint = "softPwmWrite")]
+        public static extern void Write(int pin, int value);
+
+        [DllImport("libwiringPi.so", EntryPoint = "softPwmStop")]
+        public static extern void Stop(int pin);
     }
 
     /// <summary>
