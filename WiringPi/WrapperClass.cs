@@ -100,6 +100,7 @@ namespace WiringPi
         {
             High = 1,
             Low = 0
+        }
     }
 
     public class SoftPwm {
