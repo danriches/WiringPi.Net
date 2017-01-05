@@ -20,12 +20,17 @@
  * 23 Nov 2013  Gerhard de Clercq   Changed digitalread to return int and implemented wiringPiISR
  * 
  ************************************************************************************************
- 
  * Changelog
  * Date         Changed By          Details of change  
  * 18 Jan 2016  Marcus Lum          Updated imported methods to current wiringPi 
  * 
+ ************************************************************************************************
+ * Changelog
+ * Date         Changed By          Details of change  
+ * 05 Jan 2017  Ilmar Kruis         Added PullUp/Down enum 
+ * 
  ************************************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -100,6 +105,13 @@ namespace WiringPi
         {
             High = 1,
             Low = 0
+        }
+
+        public enum PullUpDnValue
+        {
+            Off = 0,
+            Down = 1,
+            Up = 2
         }
     }
 
