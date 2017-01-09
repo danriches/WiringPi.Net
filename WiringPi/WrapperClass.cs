@@ -20,12 +20,17 @@
  * 23 Nov 2013  Gerhard de Clercq   Changed digitalread to return int and implemented wiringPiISR
  * 
  ************************************************************************************************
- 
  * Changelog
  * Date         Changed By          Details of change  
  * 18 Jan 2016  Marcus Lum          Updated imported methods to current wiringPi 
  * 
+ ************************************************************************************************
+ * Changelog
+ * Date         Changed By          Details of change  
+ * 05 Jan 2017  Ilmar Kruis         Added PullUp/Down enum 
+ * 
  ************************************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -93,13 +98,23 @@ namespace WiringPi
             Input = 0,
             Output = 1,
             PWMOutput = 2,
-            GPIOClock = 3
+            GPIOClock = 3,
+            SoftPWMOutput = 4,
+            SoftToneOutput = 5,
+            PWMToneOutput = 6
         }
 
         public enum GPIOpinvalue
         {
             High = 1,
             Low = 0
+        }
+
+        public enum PullUpDnValue
+        {
+            Off = 0,
+            Down = 1,
+            Up = 2
         }
     }
 
@@ -186,7 +201,7 @@ namespace WiringPi
         /// <param name="channel">Selects either Channel 0 or 1 for use</param>
         /// <param name="speed">Selects speed, 500,000 to 32,000,000</param>
         /// <returns>-1 for an error, or the linux file descriptor the channel uses</returns>
-        [DllImport("libwiringPiSPI.so", EntryPoint = "wiringPiSPISetup")]
+        [DllImport("libwiringPi.so", EntryPoint = "wiringPiSPISetup")]
         public static extern int wiringPiSPISetup(int channel, int speed);
 
         /// <summary>
@@ -196,7 +211,7 @@ namespace WiringPi
         /// <param name="data">signed byte array pointer which holds the data to send and will then hold the received data</param>
         /// <param name="len">How many bytes to write and read</param>
         /// <returns>-1 for an error, or the linux file descriptor the channel uses</returns>
-        [DllImport("libwiringPiSPI.so", EntryPoint = "wiringPiSPIDataRW")]
+        [DllImport("libwiringPi.so", EntryPoint = "wiringPiSPIDataRW")]
         public static unsafe extern int wiringPiSPIDataRW(int channel, byte* data, int len);  //char is a signed byte
     }
 
@@ -205,25 +220,25 @@ namespace WiringPi
     /// </summary>
     public class I2C
     {
-        [DllImport("libwiringPiI2C.so", EntryPoint = "wiringPiI2CSetup")]
+        [DllImport("libwiringPi.so", EntryPoint = "wiringPiI2CSetup")]
         public static extern int wiringPiI2CSetup(int devId);
 
-        [DllImport("libwiringPiI2C.so", EntryPoint = "wiringPiI2CRead")]
+        [DllImport("libwiringPi.so", EntryPoint = "wiringPiI2CRead")]
         public static extern int wiringPiI2CRead(int fd);
 
-        [DllImport("libwiringPiI2C.so", EntryPoint = "wiringPiI2CWrite")]
+        [DllImport("libwiringPi.so", EntryPoint = "wiringPiI2CWrite")]
         public static extern int wiringPiI2CWrite(int fd, int data);
 
-        [DllImport("libwiringPiI2C.so", EntryPoint = "wiringPiI2CWriteReg8")]
+        [DllImport("libwiringPi.so", EntryPoint = "wiringPiI2CWriteReg8")]
         public static extern int wiringPiI2CWriteReg8(int fd, int reg, int data);
 
-        [DllImport("libwiringPiI2C.so", EntryPoint = "wiringPiI2CWriteReg16")]
+        [DllImport("libwiringPi.so", EntryPoint = "wiringPiI2CWriteReg16")]
         public static extern int wiringPiI2CWriteReg16(int fd, int reg, int data);
 
-        [DllImport("libwiringPiI2C.so", EntryPoint = "wiringPiI2CReadReg8")]
+        [DllImport("libwiringPi.so", EntryPoint = "wiringPiI2CReadReg8")]
         public static extern int wiringPiI2CReadReg8(int fd, int reg);
 
-        [DllImport("libwiringPiI2C.so", EntryPoint = "wiringPiI2CReadReg16")]
+        [DllImport("libwiringPi.so", EntryPoint = "wiringPiI2CReadReg16")]
         public static extern int wiringPiI2CReadReg16(int fd, int reg);
     }
 }
