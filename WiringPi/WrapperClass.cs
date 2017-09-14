@@ -28,7 +28,12 @@
  * Changelog
  * Date         Changed By          Details of change  
  * 05 Jan 2017  Ilmar Kruis         Added PullUp/Down enum 
- * 
+ *
+ ************************************************************************************************
+ * Changelog
+ * Date         Changed By          Details of change
+ * 14 Sep 2017  Daniel Riches       Added softTone support, tested with GPIO 18 only so far
+ *
  ************************************************************************************************/
 
 using System;
@@ -240,5 +245,17 @@ namespace WiringPi
 
         [DllImport("libwiringPi.so", EntryPoint = "wiringPiI2CReadReg16")]
         public static extern int wiringPiI2CReadReg16(int fd, int reg);
+    }
+    
+    /// <summary>
+    ///  Provides the ability to use the Software Tone functions in WiringPi
+    /// </summary>
+    public class Tone
+    {
+        [DllImport("libwiringPi.so", EntryPoint = "softToneCreate")]
+        public static extern int softToneCreate(int pin);
+
+        [DllImport("libwiringPi.so", EntryPoint = "softToneWrite")]
+        public static extern void softToneWrite(int pin, int freq);
     }
 }
